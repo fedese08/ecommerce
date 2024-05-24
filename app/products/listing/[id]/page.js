@@ -30,7 +30,7 @@ function ProductDetails() {
   }, []);
 
   return (
-    <main className="flex flex-col md:flex-row md:justify-center gap-4 h-fit w-[90vw] mx-auto mt-28 md:mt-30 mb-14 md:py-0">
+    <main className="flex flex-col md:flex-row md:justify-center gap-10 h-fit w-[90vw] mx-auto mt-28 md:mt-30 mb-14 md:py-0">
       <div className="w-full md:w-[45vw] lg:w-[45vw] flex flex-col  gap-4 justify-center items-center duration-300">
         <Image
           src={product?.image[mainImage]}
@@ -39,21 +39,23 @@ function ProductDetails() {
           isZoomed={true}
           className="w-full md:w-[25vw] rounded-md"
         />
-        <div className="flex flex-row gap-2">
-          {product?.image.map((img, index) => {
-            return (
-              <Image
-                key={index}
-                src={img}
-                alt={product?.name}
-                fallbackSrc
-                width={120}
-                className="cursor-pointer  rounded-md"
-                onClick={() => changeImage(index)}
-              />
-            );
-          })}
-        </div>
+        {product?.image.length == 1 ? null : (
+          <div className="flex flex-row gap-2">
+            {product?.image.map((img, index) => {
+              return (
+                <Image
+                  key={index}
+                  src={img}
+                  alt={product?.name}
+                  fallbackSrc
+                  width={120}
+                  className="cursor-pointer  rounded-md"
+                  onClick={() => changeImage(index)}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
       <div className="w-full md:w-[40vw] mx-auto h-fit p-8 flex flex-col  justify-start border-[1px] border-[rgba(22,22,22,0.21)] rounded-md">
         <h1 className="font-bold text-[27px]">{product?.brand}</h1>
